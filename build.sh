@@ -12,7 +12,6 @@ generate() {
 
 	mkdir output/$dir
 	cp rttys.conf output/$dir
-	cp output/rttys.crt output/rttys.key output/$dir
 
 	[ "$os" = "windows" ] && {
 		bin="rttys.exe"
@@ -35,16 +34,8 @@ generate() {
 rm -rf output
 mkdir output
 
-TARGET=output ./generate-CA.sh rttys
-
 generate linux amd64
-generate linux 386
-
-generate windows amd64
-generate windows 386
-
+generate linux arm64
 generate darwin amd64
-generate darwin 386
-
 generate freebsd amd64
-generate freebsd 386
+generate windows amd64
